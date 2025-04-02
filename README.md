@@ -17,7 +17,7 @@ RecipePlanner is a WPF application designed to help users manage their recipes a
 
 ## Images
 ![LoginWindow](Assets/LoginWindow.png)
-![Account Window](Assets/AccountWindow.png)
+![Account Window](Assets/AccountWindw.png)
 ![Statistics Window](Assets/StatisticsWindow.png)
 ![Recipes Window](Assets/RecipesWindow.png)
 ![Edit Recipe Window](Assets/EditRecipe.png)
