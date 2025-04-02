@@ -1,0 +1,108 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Images\Logo\Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Fonts\SignikaNegative-Regular.ttf" />
+    <None Remove="Images\Accounts\MainPictures\oleh.chyzhov%40gmail.com.png" />
+    <None Remove="Images\Accounts\MainPictures\Test.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..BeefBourguignon.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..BeefWellington.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..ChickenAlfredo.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..ChickenTikkaMasala.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..Falafel.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..FishTacos.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..Moussaka.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..PadThai.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..Paella.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..PaellaValenciana.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..ShrimpScampi.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..SpaghettiCarbonara.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..Sushi.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..SushiNigiri.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..SzechuanPork.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..TacosalPastor.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..TandooriChicken.png" />
+    <None Remove="Images\Dishes\MainPictures\oleh..TomYumSoup.png" />
+    <None Remove="Images\MainButtons\Account.ico" />
+    <None Remove="Images\MainButtons\food-plans.ico" />
+    <None Remove="Images\MainButtons\recipe-book.ico" />
+    <None Remove="Images\MainButtons\Settings.ico" />
+    <None Remove="Images\MainButtons\Statistics.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\SignikaNegative-Regular.ttf" />
+    <Resource Include="Images\Accounts\MainPictures\oleh.chyzhov@gmail.com.png" />
+    <Resource Include="Images\Accounts\MainPictures\Test.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..BeefBourguignon.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..BeefWellington.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..ChickenAlfredo.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..ChickenTikkaMasala.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..Falafel.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..FishTacos.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..Moussaka.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..PadThai.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..Paella.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..PaellaValenciana.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..ShrimpScampi.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..SpaghettiCarbonara.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..Sushi.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..SushiNigiri.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..SzechuanPork.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..TacosalPastor.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..TandooriChicken.png" />
+    <Resource Include="Images\Dishes\MainPictures\oleh..TomYumSoup.png" />
+    <Resource Include="Images\Logo\Logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\MainButtons\Account.ico" />
+    <Resource Include="Images\MainButtons\Food-Plans.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainButtons\Recipe-Book.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainButtons\Settings.ico" />
+    <Resource Include="Images\MainButtons\Statistics.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Logs\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,139 @@
+﻿<Page x:Class="UserInterface.Views.RecipesWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UserInterface.Views"
+             xmlns:viewModel="clr-namespace:UserInterface.MVVM"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" 
+      Style="{StaticResource PageResource}">
+
+    <Page.DataContext>
+        <viewModel:RecipesViewModel/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <Style TargetType="ComboBox" x:Key="RecipeCombobox">
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        
+        <Style TargetType="TextBox" x:Key="RecipeTextBox">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+
+        <!--Top-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!--Filtering ComboBox-->
+            <Grid Grid.Column="0">
+                <ComboBox Style="{StaticResource RecipeCombobox}" 
+                          SelectedItem="{Binding OrderFilter, 
+                    Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem Content="Filter by" IsSelected="True" 
+                                  IsEnabled="False"/>
+                    <ComboBoxItem Content="Protein"/>
+                    <ComboBoxItem Content="Carbs"/>
+                    <ComboBoxItem Content="Fat"/>
+                </ComboBox>
+            </Grid>
+            
+            <!--Search line-->
+            <Grid Grid.Column="1">
+                <TextBox Text="{Binding SearchFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource RecipeTextBox}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <i:InvokeCommandAction Command="{Binding FilterCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+            </Grid>
+            
+            <!--Add New Recipe-->
+            <Grid Grid.Column="2" Margin="20">
+                <Button Style="{StaticResource BeautifulButton}"
+                        FontSize="20" Content="Add new"
+                        Command="{Binding AddRecipeCommand}"
+                        Width="150" Height="Auto"/>
+            </Grid>
+        </Grid>
+        
+        <!--Recipes-->
+        <Grid Grid.Row="1">
+            <ListView ItemsSource="{Binding Dishes}" HorizontalAlignment="Center"
+                      BorderThickness="0" MinWidth="870">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" 
+                                BorderThickness="1"
+                                Margin="3"
+                                Padding="3"
+                                MinWidth="870">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseDown">
+                                    <i:InvokeCommandAction 
+                                        Command="{Binding DataContext.SeeRecipeCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                        CommandParameter="{Binding}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{Binding Title}"
+                                           HorizontalAlignment="Center"
+                                           Grid.Column="0"
+                                           FontSize="20"/>
+                                <TextBlock Text="{Binding Calories}"
+                                           HorizontalAlignment="Center"
+                                           Grid.Column="1"
+                                           FontSize="20"/>
+
+                                <Button Style="{StaticResource BeautifulButton}" 
+                                        Content="Edit"
+                                        Grid.Column="2"
+                                        FontSize="20"
+                                        BorderThickness="1"
+                                        FontWeight="Normal"
+                                        Command="{Binding DataContext.EditRecipeCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                        CommandParameter="{Binding}"/>
+
+                                <Button Style="{StaticResource BeautifulButton}"
+                                        BorderThickness="1"
+                                        FontWeight="Normal"
+                                        Content="Remove"
+                                        Grid.Column="3"
+                                        FontSize="20"
+                                        Command="{Binding DataContext.RemoveRecipeCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                        CommandParameter="{Binding}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>

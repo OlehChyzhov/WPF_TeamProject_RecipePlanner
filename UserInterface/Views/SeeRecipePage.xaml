@@ -1,0 +1,137 @@
+﻿<Page x:Class="UserInterface.Views.SeeRecipePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UserInterface.Views"
+      xmlns:viewModel="clr-namespace:UserInterface.MVVM"
+      xmlns:liveCharts="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SeeRecipePage">
+
+    <Page.DataContext>
+        <viewModel:RecipesViewModel/>
+    </Page.DataContext>
+
+    <ScrollViewer VerticalScrollBarVisibility="Visible" 
+                  HorizontalScrollBarVisibility="Disabled">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Top-->
+            <Grid Grid.Row="0">
+                <Image Width="Auto" Height="Auto"
+               Source="{Binding DishToEditOrDelete.ImageUrl}" Stretch="Fill"/>
+            </Grid>
+
+            <!--Other-->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Left-->
+                <Grid Grid.Column="0" Background="#FFF2DF"
+                      Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Main-->
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0">
+                            <TextBlock Text="{Binding DishToEditOrDelete.Title, UpdateSourceTrigger=PropertyChanged}" 
+                                       FontSize="30"
+                                       HorizontalAlignment="Center"
+                                       FontWeight="SemiBold"
+                                       FontStyle="Italic"/>
+
+                            <Line Stroke="#011627" StrokeThickness="1.2"
+                                  Margin="5" X1="0" X2="350" 
+                                  HorizontalAlignment="Center"/>
+                        </StackPanel>
+                        
+                        <!--Ingredients-->
+                        <StackPanel Grid.Row="1" VerticalAlignment="Center"
+                                    Margin="0, 50">
+                            <TextBlock Text="Ingredients"
+                                       FontSize="25" HorizontalAlignment="Center"
+                                       Margin="10"/>
+
+                            <ListView VerticalAlignment="Center" HorizontalAlignment="Center"
+                              Margin="10" BorderThickness="0" Background="#FFF2DF"
+                              ItemsSource="{Binding IngredientsOfDishToEditOrDelete}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock FontSize="20" FontWeight="SemiBold"
+                                           Text="{Binding}"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                            <TextBlock Text="{Binding DishToEditOrDelete.Calories, StringFormat='{}{0} cal.'}"
+                                       FontSize="25" HorizontalAlignment="Center"
+                                       Margin="10" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!--LiveChart-->
+                    <Grid Grid.Row="1" Height="200">
+                        <liveCharts:PieChart LegendLocation="Top">
+                            <liveCharts:PieChart.Series>
+                                <liveCharts:PieSeries Title="Protein" 
+                                                  Values="{Binding ChartProtein}" DataLabels="True"
+                                                  LabelPoint="{Binding LabelFormatter}"
+                                                  Foreground="#FAF9F6"
+                                                  Fill="#C19AB7"/>
+                                <liveCharts:PieSeries Title="Carbs" 
+                                                  Values="{Binding ChartCarbs}" DataLabels="True"
+                                                  LabelPoint="{Binding LabelFormatter}"
+                                                  Foreground="#FAF9F6"
+                                                  Fill="#721121"/>
+                                <liveCharts:PieSeries Title="Fat" 
+                                                  Values="{Binding ChartFat}" DataLabels="True"
+                                                  LabelPoint="{Binding LabelFormatter}"
+                                                  Foreground="#FAF9F6"
+                                                  Fill="#283845"/>
+                            </liveCharts:PieChart.Series>
+                        </liveCharts:PieChart>
+                    </Grid>
+                </Grid>
+
+                <!--Right-->
+                <Grid Grid.Column="1" Background="#FFFFFF"
+                      Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Text="Recipe" FontSize="30"
+                               FontStyle="Italic" Grid.Row="0"
+                               Foreground="#2D2D2D" Margin="0, 10"/>
+                    
+                    <TextBlock FontSize="18" Grid.Row="1"
+                               FontWeight="SemiBold"
+                               Text="{Binding DishToEditOrDelete.Recipe}"
+                               IsEnabled="False"
+                               Foreground="#283845"
+                               TextWrapping="Wrap"
+                               Margin="0, 20"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+    
+</Page>

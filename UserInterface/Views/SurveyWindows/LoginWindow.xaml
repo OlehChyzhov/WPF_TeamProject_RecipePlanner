@@ -1,0 +1,213 @@
+﻿<Window x:Class="UserInterface.Views.LoginWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UserInterface.Views"
+      xmlns:viewModel="clr-namespace:UserInterface.MVVM"
+      mc:Ignorable="d" 
+      MaxHeight="600"
+      MaxWidth="1000"
+      Title="LoginWindow" Loaded="Window_Loaded">
+
+    <!--Setting DataContext of the whole window-->
+    <Window.DataContext>
+        <viewModel:LoginViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <Style TargetType="Border" x:Key="LoginBorder">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Width" Value="1000"/>
+            <Setter Property="Height" Value="600"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="LoginTextBox">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Width" Value="320"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="#011627"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="MainText">
+            <Setter Property="FontSize" Value="35"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="Error">
+            <Setter Property="Width" Value="220"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="DarkRed"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="LoginButtons">
+            <Setter Property="Width" Value="220"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="LoginTextBoxBorder">
+            <Setter Property="Width" Value="320"/>
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="CornerRadius" Value="20"/>
+        </Style>
+        <Storyboard x:Key="MainTextStoryboard">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="-12.532"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="2.892"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="-16.388"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="-1.928"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="-16.388"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="NewHereStoryBoard" SlipBehavior="Grow">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" RepeatBehavior="Forever">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="4.7"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:01.5000000" Value="-4.7"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:02" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="button" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" RepeatBehavior="Forever">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="1.1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:02" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="button" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" RepeatBehavior="Forever">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="1.1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:02" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Grid>
+        <Border Style="{StaticResource LoginBorder}" 
+                x:Name="LoginBorder"
+                HorizontalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.003,0.972" StartPoint="0.971,0.144">
+                            <GradientStop Color="#FFD0DFE5"/>
+                            <GradientStop Color="#FF91CFE8" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Width="70" Height="70" HorizontalAlignment="Left"
+                        Source="pack://application:,,,/Images/Logo/Logo.ico" OpacityMask="Black"/>
+
+                    <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                        <TextBlock x:Name="textBlock" Text="Login to Your Account"
+                                   Style="{StaticResource MainText}">
+                            <TextBlock.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+
+                        <Border x:Name="border" Style="{StaticResource LoginTextBoxBorder}" Margin="15" Background="#FFE8E4E4" RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Border.RenderTransform>
+                            <TextBox Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource LoginTextBox}" Background="#FFE8E4E4"/>
+                        </Border>
+
+                        <Border x:Name="border1" Style="{StaticResource LoginTextBoxBorder}" Background="#FFE8E4E4" RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Border.RenderTransform>
+                            <TextBox Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource LoginTextBox}" Background="#FFE8E4E4"/>
+                        </Border>
+
+                        <Button x:Name="button" Style="{StaticResource LoginButtons}"
+                                Content="Log in" Margin="25"
+                                Command="{Binding LoginCommand}" BorderBrush="Black" Foreground="White" RenderTransformOrigin="0.5,0.5">
+                            <Button.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Button.RenderTransform>
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.031,0.435" StartPoint="0.951,0.647">
+                                    <GradientStop Color="#FFBF36C6"/>
+                                    <GradientStop Color="#FF53B4E9" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Column="1" Background="#011627">
+                    <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                        <TextBlock x:Name="textBlock1" Text="New Here?" Foreground="White"
+                                   Style="{StaticResource MainText}" RenderTransformOrigin="0.5,0.5">
+                            <TextBlock.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+
+                        <Button Style="{StaticResource LoginButtons}"
+                                Content="Register" Margin="25" Width="150"
+                                Command="{Binding RegisterCommand}" Background="#FFDDDDDD"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <Border Style="{StaticResource LoginBorder}"
+                CornerRadius="50" x:Name="SurviesBorder" Visibility="Hidden">
+            <Frame x:Name="SurviesFrame" NavigationUIVisibility="Hidden"/>
+        </Border>
+    </Grid>
+</Window>

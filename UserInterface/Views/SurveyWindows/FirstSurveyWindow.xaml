@@ -1,0 +1,49 @@
+﻿<Page x:Class="UserInterface.Views.FirstSurveyWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UserInterface.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="FirstSurveyWindow" Style="{StaticResource PageResource2}">
+
+    <Grid>
+        <Border Background="White" Width="400" Height="400"
+                CornerRadius="50">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" ShadowDepth="0"/>
+            </Border.Effect>
+
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center"
+                           Margin="0 0 0 25" 
+                           FontWeight="SemiBold" 
+                           Text="What is your goal?"
+                           FontSize="32"/>
+
+                <Button Style="{StaticResource BeautifulButton}"
+                        Width="170" 
+                        Height="35"
+                        Content="Lose weight"
+                        FontSize="18"
+                        x:Name="LoseWeightButton" Click="LoseWeightButton_Click"/>
+                
+                <Button Style="{StaticResource BeautifulButton}"
+                        Width="170" Height="35"
+                        Margin="0 20 0 0" 
+                        Content="Gain weight"
+                        FontSize="18"
+                        x:Name="GainWeightButton" Click="GainWeightButton_Click"/>
+
+                <Button Style="{StaticResource BeautifulButton}"
+                        Width="170"
+                        Height="35" Margin="0 20 0 0" 
+                        Content="Maintain the weight"
+                        FontSize="18"
+                        x:Name="MaintainWeightButton" Click="MaintainWeightButton_Click"/>
+            </StackPanel>
+            
+        </Border>
+    </Grid>
+</Page>
