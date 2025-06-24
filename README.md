@@ -16,9 +16,6 @@ RecipePlanner is a WPF application for recipe management and body weight trackin
 - **MVVM Pattern**
 
 ## Images
-![LoginWindow](Assets/LoginWindow.png)
 ![Account Window](Assets/AccountWindow.png)
 ![Statistics Window](Assets/StatisticsWindow.png)
 ![Recipes Window](Assets/RecipesWindow.png)
-![Edit Recipe Window](Assets/EditRecipe.png)
-![Settings Window](Assets/Settings.png)
