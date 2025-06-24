@@ -1,13 +1,13 @@
 # RecipePlanner
 
 ## Overview
-RecipePlanner is a WPF application designed to help users manage their recipes and track body weight statistics. In this project also implemented account and settings. The project is not finished. Requires fixes, refactoring, code cleanup, and optimization.
+RecipePlanner is a WPF application for recipe management and body weight tracking. Since this is my first project, many parts of the code are messy — but that’s all part of the learning process.
 
 ## Features
 - **Recipe Management**: Add, edit, and delete recipes.
 - **Body Weight Tracking**: Monitor and analyze weight trends.
 - **User Accounts**: Create and manage user profiles.
-- **Settings**: Customize the account.
+- **Settings**: Change account details.
 
 ## Technologies Used
 - **C#** with **.NET (WPF)**
